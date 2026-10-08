@@ -1042,14 +1042,51 @@
         }
 
         // 3. Form Submission Handling
-        function handleContactSubmit(e) {
+       // 3. Form Submission Handling: sends the inquiry to contact@domainexai.com via FormSubmit
+        async function handleContactSubmit(e) {
             e.preventDefault();
-            const successMsg = document.getElementById('formSuccessMessage');
-            successMsg.classList.remove('hidden');
-            e.target.reset();
-            setTimeout(() => {
-                successMsg.classList.add('hidden');
-            }, 6000);
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const msgBox = document.getElementById('formSuccessMessage');
+            const original = btn.innerHTML;
+
+            // Fields in the order they appear on the form
+            const [name, email, company, interest, message] =
+                Array.from(form.querySelectorAll('input, select, textarea')).map(f => f.value.trim());
+
+            btn.disabled = true;
+            btn.innerHTML = '<span>Sending...</span>';
+
+            try {
+                const res = await fetch('https://formsubmit.co/ajax/contact@domainexai.com', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        organisation: company || 'Not provided',
+                        area_of_interest: interest,
+                        message: message,
+                        _subject: 'New website inquiry from ' + name,
+                        _template: 'table',
+                        _captcha: 'false'
+                    })
+                });
+                const data = await res.json();
+                if (!res.ok || String(data.success) === 'false') {
+                    throw new Error(data.message || 'Send failed');
+                }
+                msgBox.textContent = 'Thank you for contacting Domainex AI. Your message has been sent and we will reply soon.';
+                msgBox.classList.remove('hidden');
+                form.reset();
+            } catch (err) {
+                msgBox.textContent = 'Sorry, your message could not be sent. Please email us directly at contact@domainexai.com.';
+                msgBox.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = original;
+                setTimeout(() => msgBox.classList.add('hidden'), 8000);
+            }
         }
 
         // 4. Services: filter tabs + cards
