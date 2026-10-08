@@ -2,6 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 3 42 13.5v21L24 45 6 34.5v-21Z' fill='%23070b14' stroke='%2310b981' stroke-width='3'/%3E%3Cpath d='M16 14V34M16 14 30 17 34 24 30 31 16 34' stroke='%2306b6d4' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='34' cy='24' r='4' fill='%2310b981'/%3E%3C/svg%3E">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domainex AI | Turning AI Into Real-World Value | Australian AI Company</title>
     <meta name="description" content="Domainex AI is an Australian-based artificial intelligence company in Brisbane, Australia focused on enterprise automation, intelligent workflows, and human-centred AI.">
@@ -108,9 +109,39 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+
+        .svc-card { position: relative; overflow: hidden; transition: border-color .3s, transform .3s, box-shadow .3s; }
+        .svc-card::before { content:""; position:absolute; inset:0; background: radial-gradient(260px circle at var(--mx,50%) var(--my,0%), rgba(16,185,129,.14), transparent 60%); opacity:0; transition: opacity .3s; pointer-events:none; }
+        .svc-card:hover { border-color: rgba(6,182,212,.45); transform: translateY(-3px); box-shadow: 0 14px 34px -14px rgba(6,182,212,.35); }
+        .svc-card:hover::before { opacity:1; }
+        .svc-filter:focus-visible, .svc-card:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid #06b6d4; outline-offset: 2px; }
+        @keyframes svcIn { from { opacity:0; transform: translateY(8px);} to { opacity:1; transform:none; } }
+        .svc-in { animation: svcIn .35s ease both; }
+        @media (prefers-reduced-motion: reduce) { .svc-in, .pulse-glow { animation: none; } .svc-card { transition: none; } }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-200 bg-brand-dark selection:bg-brand-500 selection:text-white">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="dxGrad" x1="6" y1="4" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+    <symbol id="dx-logo" viewBox="0 0 48 48">
+      <path d="M24 3 42 13.5v21L24 45 6 34.5v-21Z" fill="rgba(16,185,129,.10)" stroke="url(#dxGrad)" stroke-width="2.2" stroke-linejoin="round"/>
+      <g stroke="url(#dxGrad)" stroke-width="1.6" stroke-linecap="round" fill="none">
+        <path d="M16 14V34M16 14 30 17 34 24 30 31 16 34"/>
+        <path d="M16 24 30 17M16 24 34 24M16 24 30 31M16 14 34 24M16 34 34 24" opacity=".55"/>
+      </g>
+      <g fill="#070b14" stroke="url(#dxGrad)" stroke-width="1.8">
+        <circle cx="16" cy="14" r="2.3"/><circle cx="16" cy="24" r="2.3"/><circle cx="16" cy="34" r="2.3"/>
+        <circle cx="30" cy="17" r="2.3"/><circle cx="30" cy="31" r="2.3"/>
+      </g>
+      <circle cx="34" cy="24" r="3.2" fill="url(#dxGrad)"/>
+      <circle cx="34" cy="24" r="5.5" fill="none" stroke="#06b6d4" stroke-opacity=".35" stroke-width="1"/>
+    </symbol>
+  </defs>
+</svg>
+
 
     <!-- NAVIGATION BAR (ServiceNow Enterprise Style) -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
@@ -119,18 +150,8 @@
                 
                 <!-- BRAND LOGO -->
                 <a href="#top" class="flex items-center space-x-3 group">
-                    <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-brand-500 to-brand-accent rounded-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <!-- Custom Geometric SVG Logo -->
-                        <svg class="w-6 h-6 text-brand-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                        </svg>
-                        <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
-                        </span>
+                    <div class="relative w-11 h-11 flex items-center justify-center rounded-xl bg-brand-dark/80 border border-brand-500/30 shadow-lg shadow-brand-500/20 group-hover:shadow-brand-accent/40 group-hover:scale-105 transition duration-300">
+                        <svg class="w-8 h-8" aria-label="Domainex AI logo" role="img"><use href="#dx-logo"/></svg>
                     </div>
                     <div class="flex flex-col">
                         <div class="flex items-center space-x-1">
@@ -144,6 +165,7 @@
                 <!-- DESKTOP NAVIGATION LINKS -->
                 <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium">
                     <a href="#about" class="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">About Us</a>
+                    <a href="#services" class="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">Services</a>
                     <a href="#platform" class="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">Platform</a>
                     <a href="#mission" class="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">Mission & Vision</a>
                     <a href="#industries" class="px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition">Industries</a>
@@ -172,6 +194,7 @@
         <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4">
             <div class="glass-panel rounded-xl p-4 flex flex-col space-y-2 border-white/10 mt-1">
                 <a href="#about" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5">About Us</a>
+                <a href="#services" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5">Services</a>
                 <a href="#platform" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5">Platform</a>
                 <a href="#mission" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5">Mission & Vision</a>
                 <a href="#industries" class="px-3 py-2 rounded-lg text-gray-200 hover:bg-white/5">Industries</a>
@@ -187,7 +210,7 @@
     <section id="top" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden grid-pattern">
         
         <!-- Interactive Canvas Background for AI Nodes -->
-        <canvas id="heroCanvas" class="absolute inset-0 pointer-events-none z-0 opacity-40"></canvas>
+        <canvas id="heroCanvas" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
         
         <!-- Ambient Glowing Orbs -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none pulse-glow"></div>
@@ -216,8 +239,8 @@
 
             <!-- Hero Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-500 to-brand-accent hover:from-brand-400 hover:to-brand-500 text-brand-dark font-bold text-base shadow-xl shadow-brand-500/20 hover:shadow-brand-500/40 transition-all duration-300 flex items-center justify-center space-x-3">
-                    <span>Explore Domainex AI</span>
+                <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-500 to-brand-accent hover:from-brand-400 hover:to-brand-500 text-brand-dark font-bold text-base shadow-xl shadow-brand-500/20 hover:shadow-brand-500/40 transition-all duration-300 flex items-center justify-center space-x-3">
+                    <span>Explore Our 20 AI Services</span>
                     <i class="fa-solid fa-chevron-right text-xs"></i>
                 </a>
                 <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-white/10 text-white font-semibold text-base transition duration-300 border border-white/15 flex items-center justify-center space-x-2">
@@ -382,6 +405,25 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24 relative z-10 border-t border-gray-800 bg-brand-dark">
+        <div class="absolute inset-x-0 top-0 h-72 bg-hero-gradient pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-xs font-semibold uppercase tracking-widest mb-3 border border-brand-500/20">What We Build</div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">20 AI services, <span class="text-gradient-emerald">one team</span></h2>
+                <p class="text-gray-400 mt-4 text-lg">From automation and agents to video, voice and strategy, Domainex AI delivers the AI work your business needs.</p>
+            </div>
+            <div id="svcFilters" class="flex flex-wrap justify-center gap-2 mb-10" role="tablist" aria-label="Service categories"></div>
+            <div id="svcGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+            <div class="mt-12 text-center">
+                <a href="#contact" class="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-accent text-brand-dark font-bold text-sm shadow-xl shadow-brand-500/20 hover:shadow-brand-500/40 transition">
+                    <span>Discuss your project</span><i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -873,9 +915,26 @@
                                 <div>
                                     <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Area of Interest</label>
                                     <select class="w-full px-4 py-3 rounded-xl bg-gray-900/90 border border-gray-800 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-sm transition">
-                                        <option>Intelligent Automation</option>
-                                        <option>Workflow Orchestration</option>
-                                        <option>Data & Insights</option>
+                                                                                <option>AI Automation & Workflow Development</option>
+                                        <option>AI Chatbot Development & Integration</option>
+                                        <option>AI Agent Development & Agentic AI Systems</option>
+                                        <option>AI SaaS & AI Web App Development</option>
+                                        <option>AI API & Business System Integration</option>
+                                        <option>AI Voice Agent & Voice Bot Development</option>
+                                        <option>AI Video Generation & Professional Video Editing</option>
+                                        <option>AI UGC Video Creation</option>
+                                        <option>AI Video Ads & Product Commercial Creation</option>
+                                        <option>AI Full-Stack Development</option>
+                                        <option>AI Image Generation & Commercial Creative Design</option>
+                                        <option>Generative AI & LLM Application Development</option>
+                                        <option>RAG & Custom Knowledge Base Chatbot Development</option>
+                                        <option>AI Machine Learning Model Development</option>
+                                        <option>Computer Vision AI Development</option>
+                                        <option>AI Data Annotation & Data Labeling</option>
+                                        <option>AI Content Humanization & AI Output Refinement</option>
+                                        <option>AI Consulting & Business AI Strategy</option>
+                                        <option>AI Presentation & Pitch Deck Creation</option>
+                                        <option>AI Music, Voice & Audio Production</option>
                                         <option>General Inquiry</option>
                                     </select>
                                 </div>
@@ -910,11 +969,8 @@
                 
                 <!-- Logo & Tagline -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-accent flex items-center justify-center text-brand-dark font-bold">
-                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                        </svg>
+                    <div class="w-9 h-9 rounded-lg bg-brand-dark border border-brand-500/30 flex items-center justify-center">
+                        <svg class="w-6 h-6" aria-hidden="true"><use href="#dx-logo"/></svg>
                     </div>
                     <span class="text-lg font-bold text-white">Domainex AI</span>
                     <span class="text-xs text-gray-500">• South Brisbane, Queensland</span>
@@ -923,6 +979,7 @@
                 <!-- Footer Quick Nav -->
                 <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-400">
                     <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#services" class="hover:text-white transition">Services</a>
                     <a href="#platform" class="hover:text-white transition">Platform</a>
                     <a href="#mission" class="hover:text-white transition">Mission</a>
                     <a href="#industries" class="hover:text-white transition">Industries</a>
@@ -996,71 +1053,104 @@
             }, 6000);
         }
 
-        // 4. Hero Background Canvas Interactive Neural Particles
+        // 4. Services: filter tabs + cards
+        const SERVICES = [{"c": "Automation & Agents", "i": "gears", "t": "AI Automation & Workflow Development", "d": "Automate repetitive business tasks with AI-driven workflows that connect your tools and save hours every week."}, {"c": "Automation & Agents", "i": "comments", "t": "AI Chatbot Development & Integration", "d": "Chatbots for websites, WhatsApp and internal tools that answer questions and hand off to your team when needed."}, {"c": "Automation & Agents", "i": "robot", "t": "AI Agent Development & Agentic AI Systems", "d": "Autonomous agents that plan, use tools and complete multi-step tasks on your behalf."}, {"c": "Software & Integration", "i": "cubes", "t": "AI SaaS & AI Web App Development", "d": "AI-powered software products and web apps, from first prototype to production launch."}, {"c": "Software & Integration", "i": "plug", "t": "AI API & Business System Integration", "d": "Connect AI models to your CRM, ERP, databases and existing business systems through reliable APIs."}, {"c": "Automation & Agents", "i": "microphone-lines", "t": "AI Voice Agent & Voice Bot Development", "d": "Natural-sounding voice agents that handle calls, bookings and customer support around the clock."}, {"c": "Video & Creative", "i": "film", "t": "AI Video Generation & Professional Video Editing", "d": "AI-generated footage and expert editing for polished videos, from short clips to full productions."}, {"c": "Video & Creative", "i": "camera", "t": "AI UGC Video Creation", "d": "Authentic-style user-generated content videos for social media, built quickly with AI."}, {"c": "Video & Creative", "i": "bullhorn", "t": "AI Video Ads & Product Commercial Creation", "d": "Scroll-stopping video ads and product commercials, made without a film crew."}, {"c": "Software & Integration", "i": "code", "t": "AI Full-Stack Development", "d": "Front end, back end and AI layers built together as one complete, maintainable product."}, {"c": "Video & Creative", "i": "wand-magic-sparkles", "t": "AI Image Generation & Commercial Creative Design", "d": "Brand-ready images, product visuals and marketing creative generated and refined with AI."}, {"c": "Language & Data AI", "i": "brain", "t": "Generative AI & LLM Application Development", "d": "Applications built on large language models for writing, analysis, search and decision support."}, {"c": "Language & Data AI", "i": "database", "t": "RAG & Custom Knowledge Base Chatbot Development", "d": "Chatbots grounded in your own documents and data, so answers stay accurate and on-topic."}, {"c": "Language & Data AI", "i": "chart-line", "t": "AI Machine Learning Model Development", "d": "Custom machine learning models for prediction, classification and pattern detection."}, {"c": "Language & Data AI", "i": "eye", "t": "Computer Vision AI Development", "d": "Systems that detect, classify and track objects, defects and events in images and video."}, {"c": "Language & Data AI", "i": "tags", "t": "AI Data Annotation & Data Labeling", "d": "Accurate labeled datasets for training and evaluating image, text and audio models."}, {"c": "Strategy & Content", "i": "pen-nib", "t": "AI Content Humanization & AI Output Refinement", "d": "Edit AI-generated text and media so it reads naturally, stays accurate and fits your brand voice."}, {"c": "Strategy & Content", "i": "compass", "t": "AI Consulting & Business AI Strategy", "d": "Find where AI fits in your business and get a practical roadmap for adopting it."}, {"c": "Strategy & Content", "i": "display", "t": "AI Presentation & Pitch Deck Creation", "d": "Clear, well-designed presentations and pitch decks built faster with AI."}, {"c": "Video & Creative", "i": "music", "t": "AI Music, Voice & Audio Production", "d": "AI-assisted music, voiceovers and sound design for videos, ads and products."}];
+        const CATS = ["All", "Automation & Agents", "Software & Integration", "Video & Creative", "Language & Data AI", "Strategy & Content"];
+        let activeCat = 'All';
+        function renderServices() {
+            const grid = document.getElementById('svcGrid');
+            const filters = document.getElementById('svcFilters');
+            filters.innerHTML = CATS.map(c => {
+                const on = c === activeCat;
+                const count = c === 'All' ? SERVICES.length : SERVICES.filter(s => s.c === c).length;
+                return `<button role="tab" aria-selected="${on}" data-cat="${c}" class="svc-filter px-4 py-2 rounded-xl text-sm font-semibold transition ${on ? 'bg-brand-500 text-brand-dark shadow-lg shadow-brand-500/20' : 'glass-panel text-gray-300 hover:text-white'}">${c} <span class="opacity-60 font-medium">${count}</span></button>`;
+            }).join('');
+            grid.innerHTML = SERVICES.map((s, idx) => ({...s, n: idx + 1})).filter(s => activeCat === 'All' || s.c === activeCat).map(s => `
+                <article class="svc-card glass-panel rounded-2xl p-6 svc-in" tabindex="0">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-accent/20 border border-brand-500/20 text-brand-400 flex items-center justify-center text-lg"><i class="fa-solid fa-${s.i}"></i></div>
+                        <span class="text-xs text-gray-500 font-mono">${String(s.n).padStart(2, '0')}</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white leading-snug mb-2">${s.t}</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">${s.d}</p>
+                    <div class="mt-4 text-xs font-medium text-brand-accent">${s.c}</div>
+                </article>`).join('');
+        }
+        document.getElementById('svcFilters').addEventListener('click', e => {
+            const b = e.target.closest('[data-cat]');
+            if (!b) return;
+            activeCat = b.dataset.cat;
+            renderServices();
+            document.querySelector('[data-cat="' + activeCat + '"]').focus();
+        });
+        document.getElementById('svcGrid').addEventListener('pointermove', e => {
+            const card = e.target.closest('.svc-card');
+            if (!card) return;
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+        renderServices();
+
+        // 5. Hero neural mesh canvas (emerald/cyan nodes, reacts to the pointer)
         window.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('heroCanvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
-
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            });
-
-            const particles = [];
-            const particleCount = Math.min(Math.floor(width / 20), 65);
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.6,
-                    vy: (Math.random() - 0.5) * 0.6,
-                    radius: Math.random() * 1.8 + 1
-                });
+            const hero = canvas.parentElement;
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const mouse = { x: -9999, y: -9999 };
+            let pts = [];
+            function resize() {
+                w = hero.clientWidth; h = hero.clientHeight;
+                canvas.width = w * dpr; canvas.height = h * dpr;
+                canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                const count = Math.min(Math.floor(w * h / 14000), 90);
+                pts = Array.from({ length: count }, (_, i) => ({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+                    r: Math.random() * 1.6 + 1, c: i % 3 === 0 ? '6,182,212' : '16,185,129'
+                }));
             }
-
-            function animateCanvas() {
-                ctx.clearRect(0, 0, width, height);
-
-                for (let i = 0; i < particles.length; i++) {
-                    let p = particles[i];
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0 || p.x > width) p.vx *= -1;
-                    if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = '#10b981';
-                    ctx.fill();
-
-                    // Connect nearby particles
-                    for (let j = i + 1; j < particles.length; j++) {
-                        let p2 = particles[j];
-                        let dx = p.x - p2.x;
-                        let dy = p.y - p2.y;
-                        let dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < 130) {
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.strokeStyle = `rgba(16, 185, 129, ${1 - dist / 130 * 0.8})`;
-                            ctx.lineWidth = 0.6;
-                            ctx.stroke();
+            resize();
+            window.addEventListener('resize', resize);
+            hero.addEventListener('pointermove', e => {
+                const r = hero.getBoundingClientRect();
+                mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+            });
+            hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+            const LINK = 130;
+            function frame() {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < pts.length; i++) {
+                    const p = pts[i];
+                    if (!reduce) {
+                        p.x += p.vx; p.y += p.vy;
+                        if (p.x < 0 || p.x > w) p.vx *= -1;
+                        if (p.y < 0 || p.y > h) p.vy *= -1;
+                    }
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgb(${p.c})`; ctx.fill();
+                    for (let j = i + 1; j < pts.length; j++) {
+                        const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+                        if (d < LINK) {
+                            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+                            ctx.strokeStyle = `rgba(${p.c},${(1 - d / LINK) * 0.7})`;
+                            ctx.lineWidth = 0.7; ctx.stroke();
                         }
                     }
+                    const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+                    if (md < 170) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(6,182,212,${(1 - md / 170) * 0.9})`;
+                        ctx.lineWidth = 0.9; ctx.stroke();
+                    }
                 }
-
-                requestAnimationFrame(animateCanvas);
+                if (!reduce) requestAnimationFrame(frame);
             }
-
-            animateCanvas();
+            frame();
         });
     </script>
 </body>
